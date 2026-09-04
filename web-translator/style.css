@@ -1,46 +1,211 @@
+/* =====================================================
+   Web Translator Panel
+===================================================== */
+
+
 #web-translator-panel {
+
     position: fixed;
+
     top: 20px;
     right: 20px;
-    width: 320px;
+
+    width: 340px;
+
+    box-sizing: border-box;
+
     background: white;
-    border: 1px solid #cccccc;
-    border-radius: 12px;
-    padding: 16px;
+
+    border: 1px solid #dcdcdc;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
     z-index: 2147483647;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    font-family: Arial, sans-serif;
+
+    box-shadow:
+        0 6px 24px rgba(0, 0, 0, 0.18);
+
+    font-family:
+        Arial,
+        "Noto Sans KR",
+        sans-serif;
+
     color: #222;
+
 }
+
+
+/* =====================================================
+   제목
+===================================================== */
+
 
 #web-translator-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 12px;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+
 }
 
-.web-translator-label {
-    font-size: 13px;
-    font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 5px;
+
+/* =====================================================
+   설명
+===================================================== */
+
+
+#web-translator-description {
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    color: #666;
+
+    margin-bottom: 14px;
+
 }
+
+
+/* =====================================================
+   각 영역 제목
+===================================================== */
+
+
+.web-translator-label {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    margin-top: 12px;
+
+    margin-bottom: 6px;
+
+}
+
+
+/* =====================================================
+   언어 선택
+===================================================== */
+
+
+#web-translator-language {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 9px 10px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 8px;
+
+    background: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   원문 / 번역 결과
+===================================================== */
+
 
 #web-translator-original,
 #web-translator-result {
-    padding: 10px;
+
+    box-sizing: border-box;
+
+    width: 100%;
+
+    padding: 11px;
+
     background: #f5f5f5;
+
     border-radius: 8px;
-    min-height: 40px;
+
+    min-height: 55px;
+
+    max-height: 180px;
+
+    overflow-y: auto;
+
     word-break: break-word;
+
+    white-space: pre-wrap;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
 }
 
+
+/* 번역 결과를 조금 더 구분 */
+
+#web-translator-result {
+
+    background: #f8f9fa;
+
+}
+
+
+/* =====================================================
+   번역 버튼
+===================================================== */
+
+
 #web-translator-button {
+
     width: 100%;
-    margin-top: 15px;
-    padding: 10px;
+
+    box-sizing: border-box;
+
+    margin-top: 16px;
+
+    padding: 11px;
+
     border: none;
+
     border-radius: 8px;
+
+    background: #222;
+
+    color: white;
+
     cursor: pointer;
+
     font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+/* 마우스를 올렸을 때 */
+
+#web-translator-button:hover {
+
+    opacity: 0.88;
+
+}
+
+
+/* 번역 중 버튼 */
+
+#web-translator-button:disabled {
+
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
 }
