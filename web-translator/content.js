@@ -35,6 +35,24 @@ if (!document.getElementById("web-translator-panel")) {
     button.id = "web-translator-button";
     button.textContent = "번역 시작";
 
+    //드래그 확인
+    button.addEventListener("click", async () => {
+
+    const selectedText =
+        window.getSelection().toString().trim();
+
+    if (!selectedText) {
+        resultText.textContent =
+            "번역할 글자를 먼저 선택해주세요.";
+        return;
+    }
+
+    originalText.textContent = selectedText;
+
+    resultText.textContent = "번역 중...";
+
+});
+    
     // 패널에 요소 추가
     panel.appendChild(title);
     panel.appendChild(originalLabel);
