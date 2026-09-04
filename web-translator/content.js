@@ -51,7 +51,19 @@ if (!document.getElementById("web-translator-panel")) {
 
     resultText.textContent = "번역 중...";
 
-});
+    });
+
+    // 언어 변경
+    const languageSelect = document.createElement("select");
+
+    languageSelect.id = "web-translator-language";
+
+    languageSelect.innerHTML = `
+        <option value="ko">한국어</option>
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+        <option value="zh">中文</option>
+    `;
     
     // 패널에 요소 추가
     panel.appendChild(title);
