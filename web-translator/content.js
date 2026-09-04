@@ -46,7 +46,7 @@ if (!document.getElementById("web-translator-panel")) {
     // 웹페이지에 패널 추가
     document.body.appendChild(panel);
 
-    const pageText = document.body.innerText;
-
-    console.log(pageText);
+    const selectedText = window.getSelection().toString().trim();
+    
+    console.log(selectedText);
 }
