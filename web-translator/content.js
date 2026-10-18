@@ -27,6 +27,16 @@ if (!document.getElementById("web-translator-panel")) {
     title.id = "web-translator-title";
     title.textContent = "Web Translator";
 
+    // 접기 / 펼치기 버튼
+    const toggleButton = document.createElement("button");
+    toggleButton.id = "web-translator-toggle";
+    toggleButton.type = "button";
+    toggleButton.textContent = "−";
+    toggleButton.title = "번역창 접기";
+    toggleButton.setAttribute("aria-expanded", "true");
+
+    title.appendChild(toggleButton);
+
 
     // --------------------------------------------------
     // 3. 설명
@@ -122,6 +132,95 @@ if (!document.getElementById("web-translator-panel")) {
     // --------------------------------------------------
 
     document.body.appendChild(panel);
+    
+    // 접기 / 펼치기 동작
+    let isCollapsed = false;
+
+    toggleButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+        isCollapsed = !isCollapsed;
+
+        // 제목을 제외한 나머지 요소 표시 여부 변경
+        Array.from(panel.children).forEach((element) => {
+            if (element !== title) {
+                element.hidden = isCollapsed;
+            }
+        });
+
+        toggleButton.textContent = isCollapsed ? "+" : "−";
+        toggleButton.title = isCollapsed
+            ? "번역창 펼치기"
+            : "번역창 접기";
+
+        toggleButton.setAttribute(
+            "aria-expanded",
+            String(!isCollapsed)
+        );
+    });
+
+
+    // --------------------------------------------------
+    // 9-1. 번역창 드래그 기능
+    // --------------------------------------------------
+
+    title.style.cursor = "move";
+    title.style.userSelect = "none";
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    // 제목을 누르면 드래그 시작
+    title.addEventListener("mousedown", (event) => {
+
+        if (event.target.closest("#web-translator-toggle")) {
+            return;
+        }
+        if (event.button !== 0) return;
+
+        const rect = panel.getBoundingClientRect();
+
+        isDragging = true;
+
+        offsetX = event.clientX - rect.left;
+        offsetY = event.clientY - rect.top;
+
+        // 기존 right 기준 위치를 left 기준으로 전환
+        panel.style.left = rect.left + "px";
+        panel.style.top = rect.top + "px";
+        panel.style.right = "auto";
+        panel.style.bottom = "auto";
+
+        event.preventDefault();
+    });
+
+    // 마우스 이동에 따라 번역창 이동
+    document.addEventListener("mousemove", (event) => {
+
+        if (!isDragging) return;
+
+        const maxX = window.innerWidth - panel.offsetWidth;
+        const maxY = window.innerHeight - panel.offsetHeight;
+
+        const x = Math.max(
+            0,
+            Math.min(event.clientX - offsetX, Math.max(0, maxX))
+        );
+
+        const y = Math.max(
+            0,
+            Math.min(event.clientY - offsetY, Math.max(0, maxY))
+        );
+
+        panel.style.left = x + "px";
+        panel.style.top = y + "px";
+    });
+
+    // 마우스를 놓으면 드래그 종료
+    document.addEventListener("mouseup", () => {
+        isDragging = false;
+    });
 
 
     // --------------------------------------------------

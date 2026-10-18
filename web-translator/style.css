@@ -43,13 +43,41 @@
 
 
 #web-translator-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     font-size: 20px;
-
     font-weight: 700;
-
     margin-bottom: 6px;
 
+    cursor: move;
+    user-select: none;
+}
+
+#web-translator-toggle {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    margin-left: 12px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #f0f0f0;
+    color: #222;
+
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+#web-translator-toggle:hover {
+    background: #e0e0e0;
+}
+
+#web-translator-panel:has(#web-translator-toggle[aria-expanded="false"]) {
+    padding-bottom: 12px;
 }
 
 
